@@ -1,0 +1,200 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.content_container{
+    display: flex;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+/* Shared Box Styling (Form & Chat Box) */
+.button, .message-box {
+    background-color: #fff;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Form Specific Styles */
+.button h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.button div {
+    margin-bottom: 10px;
+}
+
+.button input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-top: 5px;
+    outline: none;
+}
+
+.button input[type="text"]:focus {
+    border-color: #007bff;
+}
+
+.button .join {
+    display: flex;
+    gap: 10px;
+}
+
+.button button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button button:hover {
+    background-color: #0056b3;
+}
+
+.button button[name="create"] {
+    background-color: #28a745;
+}
+
+.button button[name="create"]:hover {
+    background-color: #218838;
+}
+
+/* Chat Room Styling */
+.message-box h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Messages Container */
+.messages {
+    height: 300px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Chat Input Section */
+.inputs {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    gap: 10px; /* Space between the elements */
+}
+
+#message {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    outline: none;
+}
+
+#message:focus {
+    border-color: #007bff;
+}
+
+/* Send Button */
+#send-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+}
+
+#send-btn:active {
+    background-color: #004085;
+}
+.muted {
+    font-size: 0.55em; /* Even smaller */
+    color: #888; /* Softer gray for readability */
+    font-style: italic; /* Adds a subtle style */
+    opacity: 0.8; /* Makes it blend in nicely */
+}
+.file-input-container {
+    margin-top: auto; /* Pushes the file input container to the bottom */
+}
+.file-input-container {
+    margin-top: auto; /* Pushes the file input to the bottom of the container */
+}
+
+#file {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#file:hover {
+    border-color: #4CAF50;
+    background-color: #e7f7e5;
+}
+
+#file:focus {
+    outline: none;
+    border-color: #4CAF50;
+    background-color: #e7f7e5;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    height: auto;
+}
+
+footer .social-links {
+    margin-top: 10px;
+}
+
+footer .social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .social-links a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<div class="message-box">
+  <h2>Chat Room: {{code}}</h2>
+  <div class="messages" id="messages">
+    <!-- Messages will be dynamically added here -->
+  </div>
+  <div class="inputs">
+    <input
+      type="text"
+      rows="3"
+      placeholder="Message"
+      name="message"
+      id="message"
+    />
+    <button type="button" name="send" id="send-btn" onClick="sendMessage()">Send</button>
+    <label>Send a file</label>
+    <div class="file-input-container">
+      <form id="file-form" enctype="multipart/form-data" method="POST">
+        <input type="file" name="file" id="file">
+        <button type="submit" id="upload-btn">Upload File</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function () {
+    const messages = document.getElementById("messages");
+    messages.scrollTo({
+      top: messages.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
+  
+  var socketio = io();
+
+  // Send message when Enter key is pressed
+  document.getElementById("message").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();  // Prevents form submission
+      sendMessage();
+    }
+  });
+
+  // Function to create and append a new message in the chat
+  const createMessage = (name, msg) => {
+    const content = `
+      <div class="text">
+          <span><strong>${name}</strong>: ${msg}</span>
+          <span class="muted">${new Date().toLocaleString()}</span>
+      </div>
+    `;
+    messages.innerHTML += content;
+    messages.scrollTop = messages.scrollHeight;  // Scroll to the latest message
+  };
+
+  // Listen for messages from the server
+  socketio.on("message", (data) => {
+    createMessage(data.name, data.message);
+  });
+
+  // Send message to the server when Send button is clicked
+  const sendMessage = () => {
+    const messageInput = document.getElementById("message");
+    const message = messageInput.value.trim();
+
+    if (message === "") return;
+
+    // Emit message with correct format
+    socketio.emit("message", message); 
+
+    messageInput.value = "";  // Clear input field
+  };
+
+  // Handle file uploads
+  document.getElementById("file-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+  
+    fetch("/upload", {
+      method: "POST",
+      body: formData
+    }).then(() => {
+      document.getElementById("file").value = "";  // Clear the file input
+    }).catch((error) => {
+      console.error("Error uploading file:", error);
+    });
+  });
+</script>
+
+{% endblock %}
