@@ -9,10 +9,12 @@ import zmq
 
 # MySQL setup
 db = mysql.connector.connect(
-    host='localhost', 
-    user='your_user_name',
-    password='your_passord',
-    database='your_database',
+    host="your_ip",
+    user="root", #use your username
+    password="your_password",
+    database="chatapp",
+    port=3306,
+    auth_plugin='mysql_native_password'
 )
 mycursor = db.cursor()
 
